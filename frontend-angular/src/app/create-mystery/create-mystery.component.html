@@ -1,0 +1,10 @@
+<!-- create-mystery.component.html -->
+<button (click)="generateMystery()">Generate</button>
+
+<div *ngIf="mystery">
+  <h2>{{ mystery?.title }}</h2>
+  <p>{{ mystery?.summary }}</p>
+  <ul>
+    <li *ngFor="let c of mystery.characters">{{ c.name }} - {{ c.role }}</li>
+  </ul>
+</div>
