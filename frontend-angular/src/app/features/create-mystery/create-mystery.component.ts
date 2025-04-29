@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Mystery } from '../models/mystery.model';
-import { MysteryService } from '../services/mystery.service';
-import { MysteryInput } from '../models/mystery-input';
 import { CommonModule } from '@angular/common';
+import { MysteryService } from '../../services/mystery.service';
+import { Mystery } from '../../models/mystery.model';
+import { MysteryInput } from '../../models/mysteryInput.model';
 
 @Component({
   selector: 'app-create-mystery',
@@ -20,7 +20,11 @@ export class CreateMysteryComponent {
   generateMystery(): void {
     const input: MysteryInput = {
       theme: 'Buried Secrets',
-      setting: 'Churchyard in Georgia',
+      setting: {
+        name: 'Churchyard in Georgia',
+        description: 'A quiet churchyard with a history of buried secrets. The church is old, with a graveyard that has seen many generations. The atmosphere is eerie, especially at night.',
+        locationType: 'Churchyard'
+      },
       characters: ['Chartaker', 'Priest', 'Choir Member'],
       difficulty: 'Intermediate'
     };

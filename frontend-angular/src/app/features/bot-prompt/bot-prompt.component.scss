@@ -1,0 +1,35 @@
+.bot-bubble {
+    background-color: #e0f7fa;
+    border: 2px solid #00acc1;
+    border-radius: 15px;
+    padding: 12px 20px;
+    max-width: 500px;
+    font-size: 1.2rem;
+    margin: 20px auto;
+    text-align: center;
+    min-height: 80px;
+    animation: fadeIn 0.8s ease-in-out;
+    position: relative;
+  }
+  
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1.2em;
+    background-color: #00acc1;
+    margin-left: 4px;
+    animation: blink 1s infinite;
+    vertical-align: middle;
+  }
+  
+  @keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
