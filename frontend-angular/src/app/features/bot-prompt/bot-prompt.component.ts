@@ -3,11 +3,10 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { BOT_PROMPTS, DEFAULT_PROMPT } from '../../shared/constants/bot-prompts';
 
 @Component({
-  selector: 'app-bot-prompt',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './bot-prompt.component.html',
-  styleUrl: './bot-prompt.component.scss'
+    selector: 'app-bot-prompt',
+    imports: [CommonModule],
+    templateUrl: './bot-prompt.component.html',
+    styleUrl: './bot-prompt.component.scss'
 })
 export class BotPromptComponent implements OnInit {
   @Input() promptText: string =  'this is a test ';

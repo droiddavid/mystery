@@ -5,11 +5,10 @@ import { Mystery } from '../../models/mystery.model';
 import { MysteryInput } from '../../models/mysteryInput.model';
 
 @Component({
-  selector: 'app-create-mystery',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './create-mystery.component.html',
-  styleUrl: './create-mystery.component.scss'
+    selector: 'app-create-mystery',
+    imports: [CommonModule],
+    templateUrl: './create-mystery.component.html',
+    styleUrl: './create-mystery.component.scss'
 })
 export class CreateMysteryComponent {
 

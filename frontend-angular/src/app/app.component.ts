@@ -5,6 +5,7 @@ import { Mystery } from './models/mystery.model';
 import { HttpClient } from '@angular/common/http';
 import { BotPromptComponent } from './features/bot-prompt/bot-prompt.component';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',

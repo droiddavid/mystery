@@ -3,8 +3,15 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
-    "types": ["jest", "jasmine"]
+    "target": "ES2022",
+    "useDefineForClassFields": false,
+    "module": "CommonJS",
+    "moduleResolution": "NodeNext",
+    "types": ["jest", "node"],
+    "esModuleInterop": true,
+    "allowJs": true
   },
+  "files": ["setup-jest.ts"],
   "include": [
     "src/**/*.spec.ts",
     "src/**/*.d.ts"
