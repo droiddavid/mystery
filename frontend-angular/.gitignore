@@ -11,7 +11,8 @@
 
 # Just added based on ChatGPT suggestion
 node_modules/
-/frontend-angular/node_modules/
+/node_modules/
+
 
 npm-debug.log
 yarn-error.log

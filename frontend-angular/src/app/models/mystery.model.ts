@@ -9,7 +9,7 @@ export interface Mystery {
   title: string;
   summary: string;
   setting: Setting;
-  difficulty: 'Beginner' | 'Intermediate' | 'Expert';
+  difficulty: string; // 'Beginner' | 'Intermediate' | 'Expert';
   characters: Character[];
   clues: Clue[];
   timeline: TimelineEvent[];

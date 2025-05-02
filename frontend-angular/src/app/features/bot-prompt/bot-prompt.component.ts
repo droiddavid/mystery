@@ -25,8 +25,6 @@ export class BotPromptComponent implements OnInit {
     this.startTyping();
   }
 
-  
-
   ngOnChanges(changes: SimpleChanges) {
     if (changes['promptText'] && !changes['promptText'].firstChange) {
       this.prepareTyping();
@@ -40,9 +38,6 @@ export class BotPromptComponent implements OnInit {
   }
 
   private getRandomPrompt(): string {
-    debugger;
-    const testprompt = BOT_PROMPTS;
-    console.log("testprompt", testprompt);
     const randomIndex = Math.floor(Math.random() * BOT_PROMPTS.length);
     return BOT_PROMPTS[randomIndex];
   }
