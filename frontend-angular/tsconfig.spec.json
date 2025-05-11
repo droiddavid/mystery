@@ -7,7 +7,7 @@
     "useDefineForClassFields": false,
     "module": "CommonJS",
     "moduleResolution": "NodeNext",
-    "types": ["jest", "node"],
+    "types": ["jest", "node", "@testing-library/jest-dom"], // gives you .toBeInTheDocument() etc.
     "esModuleInterop": true,
     "allowJs": true
   },

@@ -30,7 +30,7 @@ export class CreateMysteryComponent {
 
     this.mysteryService.generateMystery(input).subscribe({
       next: (data) => {
-        console.log('Generated Mystery:', data);
+        // console.log('Generated Mystery:', data);
         this.mystery = data;
       },
       error: (err) => {

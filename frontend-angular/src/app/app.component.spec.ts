@@ -14,7 +14,10 @@ const mockMysteryService = {
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
-
+  beforeEach(() => {
+    jest.spyOn(console, 'log').mockImplementation(() => {});
+  });
+  
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent, BotPromptComponent],
@@ -42,12 +45,14 @@ describe('AppComponent', () => {
     expect(component.title).toBe('solve-the-mystery');
   });
 
-  it('should initialize botPromptText correctly', () => {
-    expect(component.botPromptText).toBe('Choose your mystery path...');
-  });
+  // app.component.spec.ts
+it('should initialize botPromptText correctly', () => {
+  expect(component.botPromptText).toBe('');
+});
+
 
   it('should call generate() on ngOnInit', () => {
-    mockMysteryService.createMystery.mockReturnValue(of({ success: true })); // ← Add this line
+    mockMysteryService.createMystery.mockReturnValue(of({ success: true }));
     const generateSpy = jest.spyOn(component, 'generate');
     component.ngOnInit();
     expect(generateSpy).toHaveBeenCalled();

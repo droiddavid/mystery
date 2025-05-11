@@ -1,11 +1,13 @@
-// mystery.service.spec.ts
-import { MysteryService } from './mystery.service';
 import { TestBed } from '@angular/core/testing';
-import { provideHttpClient, HttpClient } from '@angular/common/http';
-import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
+import {
+  provideHttpClientTesting,
+  HttpTestingController,
+} from '@angular/common/http/testing';
+
+import { MysteryService } from './mystery.service';
 import { Mystery } from '../models/mystery.model';
 import { MysteryInput } from '../models/mysteryInput.model';
-
 
 describe('MysteryService', () => {
   let service: MysteryService;
@@ -13,57 +15,44 @@ describe('MysteryService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        provideHttpClient(),provideHttpClientTesting(), MysteryService],
+      providers: [provideHttpClient(), provideHttpClientTesting(), MysteryService],
     });
-    service = TestBed.inject(MysteryService);
-    httpMock = TestBed.inject(HttpTestingController);
+
+    service   = TestBed.inject(MysteryService);
+    httpMock  = TestBed.inject(HttpTestingController);
   });
 
-  afterEach(() => {
-    httpMock.verify();
-  });
+  afterEach(() => httpMock.verify());
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should call createMystery() and return expected data', () => {
-    const mockData: Mystery = {
-      title: 'Mock Title',
-      // description: 'Mock Description',
-      summary: 'Mock Summary',
+  it('createMystery() should POST and return expected data', () => {
+    const mockData = { 
+      title: 'Mystery Title',
+      summary: 'Mystery Summary',
       setting: {
-        name: 'Mock Setting',
-        description: 'Mock Setting Description',
-        locationType: 'Mock Location Type',
+        name: 'Setting Name',
+        description: 'Setting Description',
+        locationType: 'Urban'
       },
-      difficulty: 'Beginner',
+      difficulty: 'Medium',
       characters: [],
       clues: [],
       solution: {
-        suspect: 'Mock Suspect',
-        method: 'Mock Method',
-        motive: 'Mock Motive',
-        reveal: 'Mock Reveal',
-        discoveredBy: '',
+        suspect: 'Suspect',
+        method: 'Method',
+        motive: 'Motive',
+        reveal: 'Reveal',
+        discoveredBy: ''
       },
-      timeline: [{
-        time: 'Mock Time',
-        description: 'Mock Description',
-        involvedCharacters: ['Mock Character'],
-       }],
-      locations: [{
-        locationName: 'Location Name Mock',
-        type: 'Mock Type',
-        details: 'Mock Details',
-        description: 'Mock Description',
-        relevantClues: ['Mock Clue'],
-      }],
-    };
+      timeline: [],
+      locations: []
+    } as Mystery;
 
-    service.createMystery(mockData).subscribe((response) => {
-      expect(response).toEqual(mockData);
+    service.createMystery(mockData).subscribe((resp) => {
+      expect(resp).toEqual(mockData);
     });
 
     const req = httpMock.expectOne('/api/mystery/create');
@@ -72,42 +61,43 @@ describe('MysteryService', () => {
     req.flush(mockData);
   });
 
-  it('should call generateMystery() and return expected data', () => {
-    const mockData: MysteryInput = {
-      theme: 'Mock Theme',
+  it('generateMystery() should POST and return expected data', () => {
+    const input  = { 
+      theme: 'Dark Alley',
       setting: {
-        name: 'Mock Name',
-        description: 'Mock Description',
-        locationType: 'Mock Location Type'
+        name: 'Alleyway',
+        description: 'Narrow and eerie',
+        locationType: 'Urban'
       },
-      characters: ['Mock Character'],
-      difficulty: 'Beginner',
-    };
-    const mockResponse: Mystery = {
-      title: 'Generated Mystery',
-      summary: 'Some summary',
-      setting: mockData.setting,
-      difficulty: mockData.difficulty,
+      characters: ['Jax'],
+      difficulty: 'Hard'
+    } as MysteryInput;
+    
+    const output = { 
+      title: 'Generated Title',
+      summary: 'Auto summary',
+      setting: input.setting,
+      difficulty: input.difficulty,
       characters: [],
       clues: [],
       solution: {
         suspect: 'Someone',
-        method: 'Some method',
-        motive: 'Some motive',
-        reveal: 'Some reveal',
+        method: 'Something',
+        motive: 'Unknown',
+        reveal: 'Climactic',
         discoveredBy: ''
       },
       timeline: [],
       locations: []
-    };
-  
-    service.generateMystery(mockData).subscribe((response) => {
-      expect(response).toEqual(mockResponse);
+    } as Mystery;
+
+    service.generateMystery(input).subscribe((resp) => {
+      expect(resp).toEqual(output);
     });
-  
+
     const req = httpMock.expectOne('/api/mystery/generate');
     expect(req.request.method).toBe('POST');
-    expect(req.request.body).toEqual(mockData);
-    req.flush(mockResponse);
+    expect(req.request.body).toEqual(input);
+    req.flush(output);
   });
 });

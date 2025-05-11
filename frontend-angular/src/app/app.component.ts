@@ -18,7 +18,7 @@ export class AppComponent {
   title = 'solve-the-mystery';
   baseUrl: any;
 
-  botPromptText = 'Choose your mystery path...';
+  botPromptText = '';
 
 
   constructor(private mysteryService: MysteryService, private http: HttpClient) {
@@ -26,6 +26,7 @@ export class AppComponent {
   }
 
   ngOnInit() {
+    // This generates a mystery object
     this.generate();
   }
 
@@ -91,7 +92,7 @@ export class AppComponent {
 
     this.mysteryService.createMystery(exampleMystery).subscribe({
       next: (response) => {
-        console.log('Mystery created successfully:', response);
+        // console.log('Mystery created successfully:', response);
       },
       error: (err) => {
         console.error('Failed to create mystery:', err);

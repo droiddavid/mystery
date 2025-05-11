@@ -1,17 +1,28 @@
-<!-- <button (click)="createMystery()">Create Mystery</button> -->
 <h1>Hello, solve-the-mystery</h1>
 
-<!-- The BotPromptComponent displays the typing animation -->
-<app-bot-prompt [promptText]="botPromptText"></app-bot-prompt>
+<!-- BotPromptComponent displays the typing animation with the input prompt text
+<app-bot-prompt [botPersona]="'detective'"></app-bot-prompt> -->
 
+<app-bot-prompt 
+  [botPersona]="'detective'"
+  [promptText]="botPromptText">
+</app-bot-prompt>
+
+
+<!-- Input for customizing the bot prompt -->
 <div style="margin-bottom: 20px;">
-    <input 
-        type="text" 
-        [(ngModel)]="botPromptText" 
-        placeholder="Type your mystery idea..." 
-        style="padding: 8px; width: 300px;"
-    />
-    <button (click)="onUserSubmit()" style="margin-left: 10px; padding: 8px;">Display Bot Prompt</button>
+  <input 
+    type="text" 
+    [(ngModel)]="botPromptText" 
+    placeholder="Type your mystery idea..." 
+    style="padding: 8px; width: 300px;"
+  />
+  <button 
+    (click)="onUserSubmit()" 
+    style="margin-left: 10px; padding: 8px;"
+  >
+    Display Bot Prompt
+  </button>
 </div>
-  
-  <router-outlet></router-outlet>
+
+<router-outlet></router-outlet>

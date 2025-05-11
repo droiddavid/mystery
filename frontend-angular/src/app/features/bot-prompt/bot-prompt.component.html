@@ -1,7 +1,9 @@
-<div class="bot-bubble">
-    <p>
-      {{ displayedText }}
-      <span *ngIf="!isTypingComplete" class="cursor"></span>
-    </p>
-  </div>
-  
+<div class="bot-bubble" [@fadeSlideIn]
+role="status"
+aria-live="polite">
+  <p>
+    {{ displayedText }}
+    <span *ngIf="!isTypingComplete" class="cursor"
+    aria-hidden="true"></span>
+  </p>
+</div>
