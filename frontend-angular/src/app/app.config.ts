@@ -4,6 +4,7 @@ import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 
 export const appConfig: ApplicationConfig = {
@@ -11,6 +12,8 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(),
     provideHttpClient(),
-    provideAnimations()
+    provideAnimations(),
+    // Add FormsModule directly to providers (this is the key change)
+    FormsModule //  This line is crucial!
   ]
 };

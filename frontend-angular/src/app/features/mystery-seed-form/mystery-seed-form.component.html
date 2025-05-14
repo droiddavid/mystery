@@ -1,0 +1,45 @@
+<form #form="ngForm" (ngSubmit)="onSubmit()" novalidate>
+  <label>
+    Player Name:
+    <input 
+      name="playerName" 
+      [(ngModel)]="formData.playerName" 
+      required 
+      #playerName="ngModel"
+    />
+    <div *ngIf="playerName.invalid && playerName.touched" class="error">
+      Name is required.
+    </div>
+  </label>
+
+  <label>
+    Mystery Type:
+    <select 
+      name="mysteryType" 
+      [(ngModel)]="formData.mysteryType" 
+      required 
+      #mysteryType="ngModel"
+    >
+      <option value="crime">Crime</option>
+      <option value="paranormal">Paranormal</option>
+    </select>
+    <div *ngIf="mysteryType.invalid && mysteryType.touched" class="error">
+      Please select a mystery type.
+    </div>
+  </label>
+
+  <label>
+    Mood:
+    <input 
+      name="mood" 
+      [(ngModel)]="formData.mood" 
+      required 
+      #mood="ngModel"
+    />
+    <div *ngIf="mood.invalid && mood.touched" class="error">
+      Mood is required.
+    </div>
+  </label>
+
+  <button type="submit" [disabled]="form.invalid">Generate Mystery</button>
+</form>
