@@ -34,8 +34,8 @@ export class BotPromptComponent implements OnInit, OnChanges, AfterViewInit, OnD
   constructor(private promptSvc: BotPromptService) {}
 
   ngOnInit() {
-    console.log('[ngOnInit] botPersona:', this.botPersona);
-    console.log('[ngOnInit] promptText:', this.promptText);
+    // console.log('[ngOnInit] botPersona:', this.botPersona);
+    // console.log('[ngOnInit] promptText:', this.promptText);
 
     this.setPromptAndType();
   }
@@ -75,7 +75,7 @@ export class BotPromptComponent implements OnInit, OnChanges, AfterViewInit, OnD
       ? trimmed
       : this.getRandomPrompt(personaKey);
 
-    console.log('[setPromptAndType] Final Prompt:', prompt);
+    // console.log('[setPromptAndType] Final Prompt:', prompt);
 
     this.displayedText = '';
     this.isTypingComplete = false;
