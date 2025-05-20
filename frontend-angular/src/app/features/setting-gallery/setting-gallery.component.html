@@ -1,0 +1,14 @@
+<h2 class="gallery-title">Choose Your Setting</h2>
+
+<div class="gallery-container">
+  <div
+    class="setting-card"
+    *ngFor="let setting of settings"
+    [class.selected]="setting.name === selectedSetting?.name"
+    (click)="selectSetting(setting)"
+  >
+    <h3>{{ setting.name }}</h3>
+    <p>{{ setting.description }}</p>
+    <small>{{ setting.locationType }}</small>
+  </div>
+</div>

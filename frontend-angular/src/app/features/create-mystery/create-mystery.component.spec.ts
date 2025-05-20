@@ -57,7 +57,10 @@ describe('CreateMysteryComponent', () => {
       locations: [{
         locationName: 'Location Name Mock',
         type: 'Mock Type',
-        details: 'Mock Details',
+        LocationDetails: {
+          ambience: 'Mock Ambience',
+          lighting: 'Mock Lighting'
+        },
         description: 'Mock Description',
         relevantClues: ['Mock Clue'],
       }],

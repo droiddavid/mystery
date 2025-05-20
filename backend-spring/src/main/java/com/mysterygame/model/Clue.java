@@ -8,4 +8,7 @@ public class Clue {
     public String location;
     public String discoveredBy;
     public String relevance;
+    public String id;
+    public String foundAt;
+    public String reveals;
 }

@@ -64,7 +64,10 @@ describe('MysterySeedFormComponent', () => {
         locations: [{
           locationName: 'The Hollow Raven Inn',
           type: 'Inn',
-          details: 'A cozy inn with a warm fireplace.',
+          LocationDetails: {
+            ambience: 'cozy',
+            lighting: 'warm'
+          },
           description: 'The air is thick with the scent of old ale and woodsmoke.',
           relevantClues: ['clue1', 'clue2'],
         }]
@@ -132,7 +135,7 @@ describe('MysterySeedFormComponent', () => {
         name: 'David',
         secrets: ['secret1', 'secret2'],
         motive: 'Revenge',
-        alibi: { time: '10:00 AM', location: 'The Hollow Raven Inn' },
+        alibi: { time: '10:00 AM', location: 'The Hollow Raven Inn', verifiedBy: 'Alex' },
         role: 'suspect',
         personality: 'Brooding',
         knowledge: 'Criminal Psychology',
@@ -162,7 +165,10 @@ describe('MysterySeedFormComponent', () => {
       locations: [{
         locationName: 'The Hollow Raven Inn',
         type: 'Inn',
-        details: 'A cozy inn with a warm fireplace.',
+        LocationDetails: {
+          ambience: 'cozy',
+          lighting: 'warm'
+        },
         description: 'The air is thick with the scent of old ale and woodsmoke.',
         relevantClues: ['clue1', 'clue2'],
       }]
@@ -173,4 +179,19 @@ describe('MysterySeedFormComponent', () => {
     expect(seedLogicService.createSeed).toHaveBeenCalledWith(component.formData);
     expect(mysteryService.generateMystery).toHaveBeenCalledWith(seed);
   });
+
+  it('should update selectedSetting when onSettingSelected is called', () => {
+    const mockSetting = {
+      name: 'Ancient Library',
+      description: 'Dusty shelves filled with forgotten books.',
+      locationType: 'library'
+    };
+
+    expect(component.selectedSetting).toBeUndefined(); // Initially undefined
+
+    component.onSettingSelected(mockSetting);
+
+    expect(component.selectedSetting).toEqual(mockSetting);
+  });
+
 });

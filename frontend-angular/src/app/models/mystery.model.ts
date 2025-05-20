@@ -2,7 +2,8 @@ import { Character } from "./character.model";
 import { Clue } from "./clue.model";
 import { Setting } from "./setting.model";
 import { Solution } from "./solution.model";
-import { MysteryLocation } from "./location.model";
+import { MysteryLocation } from "./mystery-location.model";
+import { TimelineEvent } from "./timeline-event.model";
 
 // src/app/models/mystery.model.ts
 export interface Mystery {
@@ -15,10 +16,4 @@ export interface Mystery {
   timeline: TimelineEvent[];
   locations: MysteryLocation[]; // Location[];
   solution: Solution;
-}
-
-export interface TimelineEvent {
-  time: string;
-  description: string;
-  involvedCharacters: string[];
 }
