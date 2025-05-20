@@ -25,80 +25,83 @@ export class AppComponent {
     
   }
 
-  ngOnInit() {
-    // This generates a mystery object
-    this.generate();
-  }
+  // ngOnInit() {
+  //   // This generates a mystery object
+  //   // this.generate();
+  // }
 
-  generate(): void {
-    const exampleMystery: Mystery = {
-      title: 'The Shadow in the Pew',
-      summary: 'A priceless artifact has gone missing...',
-      setting: {
-        name: 'Quiet town church',
-        description: 'A small, peaceful church in a rural town.',
-        locationType: 'town',
-      },
-      difficulty: 'Beginner',
-      solution:  {
-        suspect: '',
-        method: '',
-        motive: 'A jealous altar boy took the artifact to impress his peers.',
-        reveal: '',
-        discoveredBy: ''
-      },
-      characters: [
-        {
-          name: 'Reverend Amos',
-          role: 'witness',
-          personality: 'solemn and careful',
-          knowledge: 'Saw someone late at night',
-          secrets: [],
-          connections: ['Altar Boy'],
-          motive: 'None',
-          alibi: 'Was in his quarters at the time'
-        }
-      ],
-      clues: [
-        {
-          id: 'c1',
-          description: 'Shattered glass behind the altar',
-          foundAt: 'Sanctuary',
-          reveals: 'Someone broke in',
+//   generate(): void {
+//     const exampleMystery: Mystery = {
+//       title: 'The Shadow in the Pew',
+//       summary: 'A priceless artifact has gone missing...',
+//       setting: {
+//         name: 'Quiet town church',
+//         description: 'A small, peaceful church in a rural town.',
+//         locationType: 'town',
+//       },
+//       difficulty: 'Beginner',
+//       solution:  {
+//         suspect: '',
+//         method: '',
+//         motive: 'A jealous altar boy took the artifact to impress his peers.',
+//         reveal: '',
+//         discoveredBy: ''
+//       },
+//       characters: [
+//         {
+//           name: 'Reverend Amos',
+//           role: 'witness',
+//           personality: 'solemn and careful',
+//           knowledge: 'Saw someone late at night',
+//           secrets: [],
+//           connections: ['Altar Boy'],
+//           motive: 'None',
+//           alibi: 'Was in his quarters at the time'
+//         }
+//       ],
+//       clues: [
+//         {
+//           id: 'c1',
+//           description: 'Shattered glass behind the altar',
+//           foundAt: 'Sanctuary',
+//           reveals: 'Someone broke in',
 
-          location: 'Sanctuary',
-          discoveredBy: 'Reverend Amos',
-          relevance: 'high'
-        }
-      ],
-      timeline: [
-        {
-          time: '10 PM',
-          description: 'Reverend hears a noise in the sanctuary',
-          involvedCharacters: ['Reverend Amos']
-        }
-      ],
-      locations: [
-        {
-          locationName: 'Sanctuary',
-          description: 'Main area of the church with pews and altar',
-          relevantClues: ['c1'],
-          type: '',
-          details: ''
-        }
+//           location: 'Sanctuary',
+//           discoveredBy: 'Reverend Amos',
+//           relevance: 'high'
+//         }
+//       ],
+//       timeline: [
+//         {
+//           time: '10 PM',
+//           description: 'Reverend hears a noise in the sanctuary',
+//           involvedCharacters: ['Reverend Amos']
+//         }
+//       ],
+//       locations: [
+//         {
+//           locationName: 'Sanctuary',
+//           description: 'Main area of the church with pews and altar',
+//           relevantClues: ['c1'],
+//           type: '',
+//           LocationDetails: {
+//             ambience: 'quiet',
+//             lighting: 'dim'
+//           }
+//         }
 
- ]
-    };
+//  ]
+//     };
 
-    this.mysteryService.createMystery(exampleMystery).subscribe({
-      next: (response) => {
-        // console.log('Mystery created successfully:', response);
-      },
-      error: (err) => {
-        console.error('Failed to create mystery:', err);
-      }
-    });
-  }
+//     this.mysteryService.createMystery(exampleMystery).subscribe({
+//       next: (response) => {
+//         // console.log('Mystery created successfully:', response);
+//       },
+//       error: (err) => {
+//         console.error('Failed to create mystery:', err);
+//       }
+//     });
+//   }
 
   createMystery(): void {
 
@@ -127,7 +130,11 @@ export class AppComponent {
           secrets: [],
           connections: ['Altar Boy'],
           motive: 'None',
-          alibi: 'Was in his quarters at the time'
+          alibi: {
+            location: 'His quarters',
+            verifiedBy: 'None',
+            time: 'Was in his quarters at the time'
+          }
         }
       ],
       clues: [
@@ -152,7 +159,10 @@ export class AppComponent {
         {
           locationName: 'Sanctuary',
           type: 'Indoor',
-          details: 'A small, peaceful church in a rural town.',
+          LocationDetails: {
+            ambience: 'quiet',
+            lighting: 'dim'
+          },
           description: 'Main area of the church with pews and altar',
           relevantClues: ['c1']
         }

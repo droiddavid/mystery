@@ -14,6 +14,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideAnimations(),
     // Add FormsModule directly to providers (this is the key change)
-    FormsModule //  This line is crucial!
+    // FormsModule //  This line is crucial!
   ]
 };

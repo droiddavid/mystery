@@ -51,12 +51,12 @@ it('should initialize botPromptText correctly', () => {
 });
 
 
-  it('should call generate() on ngOnInit', () => {
-    mockMysteryService.createMystery.mockReturnValue(of({ success: true }));
-    const generateSpy = jest.spyOn(component, 'generate');
-    component.ngOnInit();
-    expect(generateSpy).toHaveBeenCalled();
-  });
+  // it('should call generate() on ngOnInit', () => {
+  //   mockMysteryService.createMystery.mockReturnValue(of({ success: true }));
+  //   const generateSpy = jest.spyOn(component, 'generate');
+  //   component.ngOnInit();
+  //   expect(generateSpy).toHaveBeenCalled();
+  // });
   
 
   it('should call createMystery()', () => {
@@ -65,19 +65,19 @@ it('should initialize botPromptText correctly', () => {
     expect(mockMysteryService.createMystery).toHaveBeenCalled();
   });
 
-  it('should handle success in generate()', () => {
-    mockMysteryService.createMystery.mockReturnValue(of({ success: true }));
-    component.generate();
-    expect(mockMysteryService.createMystery).toHaveBeenCalled();
-  });
+  // it('should handle success in generate()', () => {
+  //   mockMysteryService.createMystery.mockReturnValue(of({ success: true }));
+  //   component.generate();
+  //   expect(mockMysteryService.createMystery).toHaveBeenCalled();
+  // });
 
-  it('should handle error in generate()', () => {
-    const error = new Error('Failed to create mystery');
-    console.error = jest.fn();
-    mockMysteryService.createMystery.mockReturnValue(throwError(() => error));
-    component.generate();
-    expect(console.error).toHaveBeenCalledWith('Failed to create mystery:', error);
-  });
+  // it('should handle error in generate()', () => {
+  //   const error = new Error('Failed to create mystery');
+  //   console.error = jest.fn();
+  //   mockMysteryService.createMystery.mockReturnValue(throwError(() => error));
+  //   component.generate();
+  //   expect(console.error).toHaveBeenCalledWith('Failed to create mystery:', error);
+  // });
 
   it('should log user input on submission', () => {
     console.log = jest.fn();

@@ -10,6 +10,6 @@ public class Mystery {
     public List<Character> characters;
     public List<Clue> clues;
     public List<TimelineEvent> timeline;
-    public List<Location> locations;
+    public List<MysteryLocation> locations;
     public Solution solution;
 }

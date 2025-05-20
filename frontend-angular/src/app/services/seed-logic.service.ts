@@ -6,7 +6,12 @@ import { Setting } from '../models/setting.model';
   providedIn: 'root'
 })
 export class SeedLogicService {
-  createSeed(playerResponses: { playerName: string; mysteryType: string; mood: string }): MysteryInput {
+  createSeed(playerResponses: {
+    playerName: string;
+    mysteryType: string;
+    mood: string;
+    setting?: Setting; // optional, to allow fallback
+  }): MysteryInput {
     // Generate values from playerResponses
     const theme = playerResponses.mysteryType;
     const difficulty = 'Intermediate'; // You may generate this dynamically

@@ -14,4 +14,7 @@ public class Character {
     public List<String> secrets;
     public String motive;
     public Alibi alibi;
+    public Personality personality;
+    public String knowledge;
+    public List<String> connections;
 }

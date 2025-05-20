@@ -1,5 +1,7 @@
 package com.mysterygame.model;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Solution {
     private String suspect;
     private String method;

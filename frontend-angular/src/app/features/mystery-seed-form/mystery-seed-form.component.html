@@ -1,4 +1,5 @@
-<form #form="ngForm" (ngSubmit)="onSubmit()" novalidate>
+<form #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate>
+
   <label>
     Player Name:
     <input 
@@ -43,3 +44,32 @@
 
   <button type="submit" [disabled]="form.invalid">Generate Mystery</button>
 </form>
+
+
+
+
+<!--- Show the generated mystery (after the API returns) in the HTML template -->
+<!-- Add after the form -->
+<div *ngIf="mystery" class="generated-mystery" style="margin-top: 20px;">
+  <h2>{{ mystery.title }}</h2>
+  <p><strong>Summary:</strong> {{ mystery.summary }}</p>
+
+  <h3>Setting</h3>
+  <p>{{ mystery.setting.name }} - {{ mystery.setting.description }}</p>
+
+  <h3>Characters</h3>
+  <ul>
+    <li *ngFor="let char of mystery.characters">
+      {{ char.name }} - {{ char.role }}
+    </li>
+  </ul>
+
+  <h3>Clues</h3>
+  <ul>
+    <li *ngFor="let clue of mystery.clues">
+      {{ clue.description }} (Found at: {{ clue.foundAt }})
+    </li>
+  </ul>
+</div>
+
+<!-- <app-setting-gallery (settingSelected)="onSettingSelected($event)"></app-setting-gallery> -->

@@ -5,7 +5,7 @@ import java.util.List;
 // MysteryInputDTO
 public class MysteryInput {
     public String theme;
-    public String setting;
+    public Setting setting;
     public List<String> characters;
     public String difficulty;
 }
