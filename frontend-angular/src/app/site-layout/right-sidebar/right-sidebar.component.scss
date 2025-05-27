@@ -1,0 +1,23 @@
+.right-sidebar {
+  width: 220px;
+  background: #f5f5f5;
+  padding: 20px 10px;
+  height: 100vh;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.04);
+}
+.right-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.right-sidebar li {
+  margin-bottom: 16px;
+}
+.right-sidebar a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+}
+.right-sidebar a:hover {
+  text-decoration: underline;
+}
