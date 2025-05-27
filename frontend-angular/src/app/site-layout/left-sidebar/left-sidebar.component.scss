@@ -1,0 +1,23 @@
+.left-sidebar {
+  width: 220px;
+  background: #f5f5f5;
+  padding: 20px 10px;
+  height: 100vh;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.04);
+}
+.left-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.left-sidebar li {
+  margin-bottom: 16px;
+}
+.left-sidebar a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+}
+.left-sidebar a:hover {
+  text-decoration: underline;
+}
