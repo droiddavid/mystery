@@ -22,18 +22,19 @@
     Display Bot Prompt
   </button>
 </div> -->
-<app-header></app-header>
+<app-header
+  (toggleLeftSidebar)="onToggleLeftSidebar()"
+  (toggleRightSidebar)="onToggleRightSidebar()"
+  [leftSidebarOpen]="showLeftSidebar"
+  [rightSidebarOpen]="showRightSidebar">
+</app-header>
 
 <div class="layout-container">
-  <!-- Left menu placeholder -->
-  <app-left-sidebar></app-left-sidebar>
-
-  <!-- Dynamic content area -->
-  <router-outlet></router-outlet>
-
-  <!-- Right menu placeholder -->
-  <app-right-sidebar></app-right-sidebar>
+  <app-left-sidebar *ngIf="showLeftSidebar" class="sidebar left" role="navigation" aria-label="Main Menu"></app-left-sidebar>
+  <main class="main-content" role="main">
+    <router-outlet></router-outlet>
+  </main>
+  <app-right-sidebar *ngIf="showRightSidebar" class="sidebar right" role="complementary" aria-label="Additional Tools"></app-right-sidebar>
 </div>
 
 <app-footer></app-footer>
-</footer>
