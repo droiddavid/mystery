@@ -1,9 +1,12 @@
+
 .right-sidebar {
   width: 220px;
   background: #f5f5f5;
   padding: 20px 10px;
   height: 100vh;
   box-shadow: -2px 0 8px rgba(0,0,0,0.04);
+  transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+  z-index: 100;
 }
 .right-sidebar ul {
   list-style: none;
@@ -20,4 +23,22 @@
 }
 .right-sidebar a:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .right-sidebar {
+    position: fixed;
+    right: 0;
+    top: 64px;
+    bottom: 56px;
+    width: 80vw;
+    max-width: 300px;
+    height: auto;
+    transform: translateX(100%);
+    box-shadow: -2px 0 8px rgba(0,0,0,0.12);
+    background: #fafafa;
+  }
+  .right-sidebar.active {
+    transform: translateX(0);
+  }
 }

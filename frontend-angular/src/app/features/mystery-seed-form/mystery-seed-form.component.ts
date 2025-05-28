@@ -4,13 +4,15 @@ import { CommonModule } from '@angular/common';
 import { SeedLogicService } from '../../services/seed-logic.service';
 import { MysteryService } from '../../services/mystery.service';
 import { Mystery } from '../../models/mystery.model';
-//import { SettingGalleryComponent } from '../setting-gallery/setting-gallery.component';
+import { SettingGalleryComponent } from '../setting-gallery/setting-gallery.component';
 import { Setting } from '../../models/setting.model';
+
+import { MysteryResultComponent } from './mystery-result.component';
 
 @Component({
   selector: 'app-mystery-seed-form',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, SettingGalleryComponent, MysteryResultComponent],
   templateUrl: './mystery-seed-form.component.html'
 })
 export class MysterySeedFormComponent {
@@ -31,7 +33,7 @@ export class MysterySeedFormComponent {
 
   // Handle the response from the mystery generation
   onSubmit(form: NgForm) {
-    if (form.invalid || this.selectedSetting) return;
+    if (form.invalid || !this.selectedSetting) return;
 
     const seedInput = this.seedLogic.createSeed({
       ...this.formData,

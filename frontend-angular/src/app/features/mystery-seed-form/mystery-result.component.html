@@ -1,0 +1,46 @@
+<div *ngIf="mystery" class="mystery-result-card">
+  <header class="mystery-header">
+    <h2>{{ mystery.title }}</h2>
+    <p class="summary">{{ mystery.summary }}</p>
+  </header>
+
+  <section class="mystery-setting" *ngIf="mystery?.setting">
+    <h3>Setting</h3>
+    <div>
+      <strong>Name:</strong> {{ mystery.setting.name }}<br>
+      <strong>Description:</strong> {{ mystery.setting.description }}<br>
+      <strong>Type:</strong> {{ mystery.setting.locationType }}
+    </div>
+  </section>
+
+  <section class="mystery-characters" *ngIf="mystery?.characters?.length">
+    <h3>Characters</h3>
+    <ul>
+      <li *ngFor="let c of mystery?.characters">
+        <strong>{{ c?.name }}</strong> <span *ngIf="c?.role">({{ c?.role }})</span>
+        <span *ngIf="c?.personality">- {{ c?.personality }}</span>
+        <span *ngIf="c?.motive">- Motive: {{ c?.motive }}</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="mystery-clues" *ngIf="mystery?.clues?.length">
+    <h3>Clues</h3>
+    <ul>
+      <li *ngFor="let clue of mystery?.clues">
+        <strong>{{ clue?.description }}</strong>
+        <span *ngIf="clue?.foundAt"> (Found at: {{ clue?.foundAt }})</span>
+        <span *ngIf="clue?.relevance"> - {{ clue?.relevance }}</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="mystery-timeline" *ngIf="mystery?.timeline?.length">
+    <h3>Timeline</h3>
+    <ol>
+      <li *ngFor="let event of mystery?.timeline">
+        <strong>{{ event?.time }}</strong>: {{ event?.description }}
+      </li>
+    </ol>
+  </section>
+</div>

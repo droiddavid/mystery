@@ -7,14 +7,13 @@ import { HttpClient } from '@angular/common/http';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { BotPromptComponent } from '../../features/bot-prompt/bot-prompt.component';
 import { HeaderComponent } from '../header/header.component';
 import { LeftSidebarComponent } from '../left-sidebar/left-sidebar.component';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, BotPromptComponent, HeaderComponent, RouterOutlet, LeftSidebarComponent, RightSidebarComponent, FooterComponent],
+  imports: [CommonModule, FormsModule, HeaderComponent, RouterOutlet, LeftSidebarComponent, RightSidebarComponent, FooterComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })
@@ -25,8 +24,20 @@ export class HomePageComponent {
 
   botPromptText = '';
 
+  showLeftSidebar = true;
+  showRightSidebar = true;
+
+
   constructor(private mysteryService: MysteryService, private http: HttpClient) {
     
+  }
+
+  onToggleLeftSidebar() {
+  this.showLeftSidebar = !this.showLeftSidebar;
+  }
+
+  onToggleRightSidebar() {
+  this.showRightSidebar = !this.showRightSidebar;
   }
 
   createMystery(): void {

@@ -1,8 +1,25 @@
-<header class="site-header">
+
+<header class="site-header" role="banner">
   <div class="logo">🕵️ Solve the Mystery</div>
   <nav class="nav-links">
+    <button
+      (click)="toggleLeft()"
+      (keydown.enter)="toggleLeft()"
+      (keydown.space)="toggleLeft()"
+      aria-label="Toggle Left Sidebar"
+      [attr.aria-expanded]="leftSidebarOpen"
+      tabindex="0"
+    >☰ Left</button>
     <a href="#">Play</a>
     <a href="#">Create</a>
     <a href="#">Profile</a>
+    <button
+      (click)="toggleRight()"
+      (keydown.enter)="toggleRight()"
+      (keydown.space)="toggleRight()"
+      aria-label="Toggle Right Sidebar"
+      [attr.aria-expanded]="rightSidebarOpen"
+      tabindex="0"
+    >☰ Right</button>
   </nav>
 </header>
