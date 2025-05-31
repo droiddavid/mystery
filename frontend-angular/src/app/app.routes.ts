@@ -13,5 +13,9 @@ export const routes: Routes = [
           path: 'gallery',
           loadComponent: () => import('./features/setting-gallery/setting-gallery.component').then(m => m.SettingGalleryComponent)
      },
+     {
+          path: 'mystery-viewer',
+          loadComponent: () => import('./features/render-mystery/render-mystery.component').then(m => m.RenderMysteryComponent)
+     },
      { path: '**', redirectTo: 'seed' }
 ];

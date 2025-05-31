@@ -1,0 +1,50 @@
+
+.timeline-event {
+  padding: 1rem;
+  border-left: 3px solid var(--color-accent);
+  margin-bottom: 1rem;
+  background: rgba(43,43,43,0.85);
+  transition: background 0.3s;
+}
+.timeline-event:hover {
+  background: rgba(60,60,60,0.95);
+  box-shadow: var(--glow);
+}
+
+.timeline-time {
+  font-weight: bold;
+  color: #1976d2;
+  font-size: 1rem;
+}
+
+.timeline-description {
+  margin: 0.2rem 0 0.2rem 0;
+  font-size: 1rem;
+}
+
+.timeline-characters {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.timeline-empty {
+  color: #888;
+  font-style: italic;
+  padding: 1rem 0;
+}
+
+@media (max-width: 600px) {
+  .timeline-list {
+    border-left-width: 2px;
+  }
+  .timeline-dot {
+    width: 0.8rem;
+    height: 0.8rem;
+    margin-right: 0.7rem;
+    margin-left: -0.5rem;
+  }
+  .timeline-event {
+    margin-bottom: 1.2rem;
+  }
+}
+

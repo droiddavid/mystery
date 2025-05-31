@@ -1,0 +1,17 @@
+<section class="clue-list" aria-label="Clues">
+  <ng-container *ngIf="clues?.length; else noClues">
+    <ul>
+      <li *ngFor="let clue of clues" class="clue-item" aria-label="Clue">
+        <div><strong>Description:</strong> {{ clue.description }}</div>
+        <div><strong>Found At:</strong> {{ clue.foundAt }}</div>
+        <div><strong>Discovered By:</strong> {{ clue.discoveredBy }}</div>
+        <div><strong>Relevance:</strong> {{ clue.relevance }}</div>
+        <div><strong>Location:</strong> {{ clue.location }}</div>
+        <div *ngIf="clue.reveals"><strong>Reveals:</strong> {{ clue.reveals }}</div>
+      </li>
+    </ul>
+  </ng-container>
+  <ng-template #noClues>
+    <div class="no-clues" aria-live="polite"><em>No clues discovered yet.</em></div>
+  </ng-template>
+</section>

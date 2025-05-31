@@ -4,20 +4,20 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { of } from 'rxjs';
 import { provideHttpClient } from '@angular/common/http';
 // import { HttpClient } from '@angular/common/http';
-import { SeedLogicService } from '../../services/seed-logic.service';
+import { MysteryInputBuilderService } from '../../services/mystery-input.service';
 import { MysteryService } from '../../services/mystery.service';
 import { MysteryInput } from '../../models/mysteryInput.model';
 
 describe('MysterySeedFormComponent', () => {
   let component: MysterySeedFormComponent;
   let fixture: ComponentFixture<MysterySeedFormComponent>;
-  let seedLogicService: SeedLogicService;
+  let mysteryInputBuilderService: MysteryInputBuilderService;
   let mysteryService: MysteryService;
 
   beforeEach(async () => {
 
     const mockSeedLogic = {
-      createSeed: jest.fn()
+      mysteryInputBuilder: jest.fn()
     };
 
     const mockMysteryService = {
@@ -81,7 +81,7 @@ describe('MysterySeedFormComponent', () => {
         // SeedLogicService,
         // MysteryService
         
-        { provide: SeedLogicService, useValue: mockSeedLogic },
+        { provide: MysteryInputBuilderService, useValue: mockSeedLogic },
         { provide: MysteryService, useValue: mockMysteryService }
       ]
     })
@@ -89,7 +89,7 @@ describe('MysterySeedFormComponent', () => {
 
     fixture = TestBed.createComponent(MysterySeedFormComponent);
     component = fixture.componentInstance;
-    seedLogicService = TestBed.inject(SeedLogicService);
+    mysteryInputBuilderService = TestBed.inject(MysteryInputBuilderService);
     mysteryService = TestBed.inject(MysteryService);
     fixture.detectChanges();
   });
@@ -101,31 +101,30 @@ describe('MysterySeedFormComponent', () => {
   it('should not proceed if form is invalid', () => {
     const form = { invalid: true } as NgForm;
     component.onSubmit(form);
-    expect(seedLogicService.createSeed).not.toHaveBeenCalled();
+    expect(mysteryInputBuilderService.mysteryInputBuilder).not.toHaveBeenCalled();
     expect(mysteryService.generateMystery).not.toHaveBeenCalled();
   });
 
   it('should call services when form is valid', () => {
     const form = { invalid: false } as NgForm;
-
-    const seed: MysteryInput = {
-      theme: 'crime',
-      difficulty: 'Intermediate',
-      characters: ['Alex'],
-      setting: {
-        name: 'The Hollow Raven Inn',
-        description: 'The air is thick with the scent of old ale and woodsmoke.',
-        locationType: 'The Hollow Raven Inn'
-      }
+    const mockSetting = {
+      name: 'The Hollow Raven Inn',
+      description: 'The air is thick with the scent of old ale and woodsmoke.',
+      locationType: 'The Hollow Raven Inn'
     };
-
+    component.selectedSetting = mockSetting;
+    const seed: MysteryInput = {
+      playerName: 'Alex',
+      mysteryType: 'crime',
+      mood: 'tense',
+      setting: mockSetting
+    };
     component.formData = {
       playerName: 'Alex',
       mysteryType: 'crime',
       mood: 'tense'
     };
-
-    jest.spyOn(seedLogicService, 'createSeed').mockReturnValue(seed);
+    jest.spyOn(mysteryInputBuilderService, 'mysteryInputBuilder').mockReturnValue(seed);
     jest.spyOn(mysteryService, 'generateMystery').mockReturnValue(of({
       title: 'Generated Mystery',
       summary: 'A thrilling mystery',
@@ -173,10 +172,8 @@ describe('MysterySeedFormComponent', () => {
         relevantClues: ['clue1', 'clue2'],
       }]
     }));
-
     component.onSubmit(form);
-
-    expect(seedLogicService.createSeed).toHaveBeenCalledWith(component.formData);
+    expect(mysteryInputBuilderService.mysteryInputBuilder).toHaveBeenCalledWith({ ...component.formData, setting: mockSetting });
     expect(mysteryService.generateMystery).toHaveBeenCalledWith(seed);
   });
 
@@ -191,7 +188,51 @@ describe('MysterySeedFormComponent', () => {
 
     component.onSettingSelected(mockSetting);
 
-    expect(component.selectedSetting).toEqual(mockSetting);
+expect(component.selectedSetting).toEqual(mockSetting);
+  });
+
+  it('should render input fields for playerName, mysteryType, and mood', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('input[name="playerName"]')).toBeTruthy();
+    expect(compiled.querySelector('select[name="mysteryType"]')).toBeTruthy();
+    expect(compiled.querySelector('input[name="mood"]')).toBeTruthy();
+  });
+
+  it('should disable submit button when form is invalid', async () => {
+    component.formData = { playerName: '', mysteryType: '', mood: '' };
+    fixture.detectChanges();
+    await fixture.whenStable();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const button = compiled.querySelector('button[type="submit"]') as HTMLButtonElement;
+    expect(button.disabled).toBe(true);
+  });
+
+  it('should not submit if setting is not selected', () => {
+    const form = { invalid: false } as NgForm;
+    component.selectedSetting = undefined;
+    component.onSubmit(form);
+    expect(mysteryInputBuilderService.mysteryInputBuilder).not.toHaveBeenCalled();
+    expect(mysteryService.generateMystery).not.toHaveBeenCalled();
+  });
+
+  it('should set mystery after successful generateMystery', () => {
+    const form = { invalid: false } as NgForm;
+    const mockSetting = {
+      name: 'Test Setting',
+      description: 'desc',
+      locationType: 'type'
+    };
+    component.selectedSetting = mockSetting;
+    component.formData = { playerName: 'A', mysteryType: 'crime', mood: 'tense' };
+    const mockSeed = { test: 'seed' };
+    const mockMystery = { title: 'Mystery!' };
+    (mysteryInputBuilderService.mysteryInputBuilder as jest.Mock).mockReturnValue(mockSeed);
+    (mysteryService.generateMystery as jest.Mock).mockReturnValue(of(mockMystery));
+    component.onSubmit(form);
+    expect(mysteryInputBuilderService.mysteryInputBuilder).toHaveBeenCalledWith({ ...component.formData, setting: mockSetting });
+    expect(mysteryService.generateMystery).toHaveBeenCalledWith(mockSeed);
+    expect(component.mystery).toEqual(mockMystery);
   });
 
 });
+

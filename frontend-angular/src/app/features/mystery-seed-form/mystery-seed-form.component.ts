@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { SeedLogicService } from '../../services/seed-logic.service';
+import { MysteryInputBuilderService } from '../../services/mystery-input.service';
 import { MysteryService } from '../../services/mystery.service';
 import { Mystery } from '../../models/mystery.model';
 import { SettingGalleryComponent } from '../setting-gallery/setting-gallery.component';
@@ -27,7 +27,7 @@ export class MysterySeedFormComponent {
   selectedSetting?: Setting;
 
   constructor(
-    private seedLogic: SeedLogicService,
+    private seedLogic: MysteryInputBuilderService,
     private mysteryService: MysteryService
   ) {}
 
@@ -35,11 +35,11 @@ export class MysterySeedFormComponent {
   onSubmit(form: NgForm) {
     if (form.invalid || !this.selectedSetting) return;
 
-    const seedInput = this.seedLogic.createSeed({
+    const seedInput = this.seedLogic.mysteryInputBuilder({
       ...this.formData,
       setting: this.selectedSetting
     });
-    // const seedInput = this.seedLogic.createSeed(this.formData);
+    // const seedInput = this.seedLogic.mysteryInputBuilder(this.formData);
 
 
     this.mysteryService.generateMystery(seedInput).subscribe((retrievedMystery: Mystery) => {

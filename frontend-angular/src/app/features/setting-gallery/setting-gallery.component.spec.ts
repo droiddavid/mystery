@@ -4,39 +4,26 @@
 // import { Component } from '@angular/core';
 // import { Setting } from '../../models/setting.model';
 
-// describe('SettingGalleryComponent', () => {
-//   let component: SettingGalleryComponent;
-//   let fixture: ComponentFixture<SettingGalleryComponent>;
+describe('SettingGalleryComponent', () => {
+  it('should emit and set selectedSetting when selectSetting is called', () => {
+    // Arrange
+    const { SettingGalleryComponent } = require('./setting-gallery.component');
+    const component = new SettingGalleryComponent();
+    const mockSetting = {
+      name: 'Test Setting',
+      description: 'A test description',
+      locationType: 'TestType'
+    };
+    const emitSpy = jest.spyOn(component.settingSelected, 'emit');
 
-//   // Mock setting to test the SettingGalleryComponent
-//   const MockSettings: Setting[] = [
-//     {
-//       name: 'The Hollow Raven Inn',
-//       description: 'Old ale and woodsmoke fill the air.',
-//       locationType: 'Inn'
-//     },
-//     {
-//       name: 'Crimson Docks',
-//       description: 'Fog rolls over rusted crates and wet stone.',
-//       locationType: 'Harbor'
-//     }
-//   ];
+    // Act
+    component.selectSetting(mockSetting);
 
-//   beforeEach(async () => {
-//     await TestBed.configureTestingModule({
-//       imports: [SettingGalleryComponent]
-//     })
-//     .compileComponents();
-
-//     fixture = TestBed.createComponent(SettingGalleryComponent);
-//     component = fixture.componentInstance;
-//     component.settings = MockSettings;
-//     fixture.detectChanges();
-//   });
-
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
+    // Assert
+    expect(component.selectedSetting).toBe(mockSetting);
+    expect(emitSpy).toHaveBeenCalledWith(mockSetting);
+  });
+});
 
 //   it('should render all setting cards', () => {
 //     const cards = fixture.debugElement.queryAll(By.css('.setting-card'));
@@ -61,3 +48,4 @@
 //     expect(selectedCard.classList).toContain('selected');
 //   });
 // });
+//   it('should create', () => {

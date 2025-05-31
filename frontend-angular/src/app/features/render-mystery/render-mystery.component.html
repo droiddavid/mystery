@@ -1,0 +1,43 @@
+<section *ngIf="mystery">
+  <header>
+    <h1>{{ mystery.title }}</h1>
+    <p><em>{{ mystery.summary }}</em></p>
+    <div *ngIf="mystery.difficulty"><strong>Difficulty:</strong> {{ mystery.difficulty }}</div>
+  </header>
+
+  <section>
+    <h2>Setting</h2>
+    <div><strong>Name:</strong> {{ mystery.setting.name }}</div>
+    <div><strong>Description:</strong> {{ mystery.setting.description }}</div>
+    <div><strong>Type:</strong> {{ mystery.setting.locationType }}</div>
+  </section>
+
+  <section>
+    <h2>Characters</h2>
+    <app-character-list [characters]="mystery.characters"></app-character-list>
+  </section>
+
+  <section>
+    <h2>Clues</h2>
+    <app-clue-list [clues]="mystery.clues"></app-clue-list>
+  </section>
+
+
+  <section>
+    <app-timeline [events]="mystery.timeline"></app-timeline>
+    <app-timeline-editable
+      *ngIf="editMode"
+      [editableEvents]="editableTimeline"
+      (updated)="mystery.timeline = $event"
+    ></app-timeline-editable>
+  </section>
+
+  <section *ngIf="mystery.solution as solution">
+    <h2>Solution</h2>
+    <div><strong>Suspect:</strong> {{ solution.suspect }}</div>
+    <div><strong>Method:</strong> {{ solution.method }}</div>
+    <div><strong>Motive:</strong> {{ solution.motive }}</div>
+    <div><strong>Reveal:</strong> {{ solution.reveal }}</div>
+    <div *ngIf="solution.discoveredBy"><strong>Discovered by:</strong> {{ solution.discoveredBy }}</div>
+  </section>
+
