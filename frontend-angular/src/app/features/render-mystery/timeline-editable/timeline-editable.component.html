@@ -1,0 +1,28 @@
+<section class="timeline-editable" aria-label="Editable Timeline">
+  <h2>Editable Timeline</h2>
+  <div *ngIf="!readonlyMode" class="timeline-actions">
+    <button type="button" (click)="addEvent()" data-testid="add-event">Add Event</button>
+    <button type="button" (click)="resetOrder()" data-testid="reset-order">Reset Order</button>
+    <button type="button" (click)="emitUpdate()" data-testid="save-timeline">Save</button>
+  </div>
+  <div cdkDropList (cdkDropListDropped)="drop($event)" class="timeline-list" data-testid="timeline-list">
+    <div *ngFor="let event of editableEvents; let i = index" cdkDrag class="timeline-event" [class.player-event]="event.source === 'player'" [class.ai-event]="event.source === 'ai'" data-testid="timeline-event">
+      <div class="timeline-dot" aria-hidden="true">
+        <span *ngIf="event.source === 'player'" title="Player event">👤</span>
+        <span *ngIf="event.source === 'ai'" title="AI event">🤖</span>
+      </div>
+      <div class="timeline-content">
+        <input [(ngModel)]="event.time" [readonly]="readonlyMode || !event.editable" class="timeline-time" data-testid="timeline-time" placeholder="Time" />
+        <input [(ngModel)]="event.description" [readonly]="readonlyMode || !event.editable" class="timeline-description" data-testid="timeline-description" placeholder="Description" />
+        <div *ngIf="event.involvedCharacters?.length" class="timeline-characters" data-testid="timeline-characters">
+          <strong>Involved:</strong> {{ event.involvedCharacters.join(', ') }}
+        </div>
+        <label *ngIf="!readonlyMode && event.editable" class="suspected-false-toggle">
+          <input type="checkbox" [(ngModel)]="event.suspectedFalse" data-testid="suspected-false" /> Suspected False
+        </label>
+      </div>
+      <button *ngIf="!readonlyMode && event.editable" type="button" (click)="removeEvent(i)" aria-label="Remove event" data-testid="remove-event">✖</button>
+    </div>
+  </div>
+  <div *ngIf="!editableEvents.length" class="timeline-empty" data-testid="timeline-empty"><em>Timeline is empty.</em></div>
+</section>

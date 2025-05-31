@@ -1,0 +1,103 @@
+.timeline-editable {
+  margin: 2rem 0;
+  padding: 0 1rem;
+}
+.timeline-actions {
+  margin-bottom: 1rem;
+  button {
+    margin-right: 0.5rem;
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    border: 1px solid #1976d2;
+    background: #f4f8fc;
+    color: #1976d2;
+    cursor: pointer;
+    transition: background 0.2s;
+    &:hover {
+      background: #e3eafc;
+    }
+  }
+}
+.timeline-list {
+  display: flex;
+  flex-direction: column;
+  border-left: 3px solid #b0b0b0;
+  min-height: 2rem;
+}
+.timeline-event {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  position: relative;
+  min-height: 2.5rem;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  padding: 0.7rem 1rem;
+  transition: box-shadow 0.2s;
+  &.player-event {
+    border-left: 4px solid #388e3c;
+  }
+  &.ai-event {
+    border-left: 4px solid #1976d2;
+  }
+}
+.timeline-dot {
+  width: 1.2rem;
+  height: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  margin-left: -0.7rem;
+  font-size: 1.1rem;
+}
+.timeline-content {
+  flex: 1;
+  min-width: 0;
+}
+.timeline-time, .timeline-description {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.2rem;
+  font-size: 1rem;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  background: transparent;
+  outline: none;
+  padding: 0.2rem 0;
+}
+.timeline-time[readonly], .timeline-description[readonly] {
+  color: #888;
+  border-bottom: 1px dashed #ccc;
+}
+.suspected-false-toggle {
+  font-size: 0.95rem;
+  color: #b71c1c;
+  margin-top: 0.3rem;
+  display: flex;
+  align-items: center;
+  input[type="checkbox"] {
+    margin-right: 0.3rem;
+  }
+}
+.timeline-empty {
+  color: #888;
+  font-style: italic;
+  padding: 1rem 0;
+}
+@media (max-width: 600px) {
+  .timeline-list {
+    border-left-width: 2px;
+  }
+  .timeline-dot {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.7rem;
+    margin-left: -0.5rem;
+  }
+  .timeline-event {
+    margin-bottom: 1rem;
+    padding: 0.5rem 0.5rem;
+  }
+}

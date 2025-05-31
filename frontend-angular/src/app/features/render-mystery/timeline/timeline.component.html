@@ -1,0 +1,21 @@
+<section class="timeline" aria-label="Timeline of Events">
+  <h2 *ngIf="label; else defaultLabel" data-testid="timeline-label">{{ label }}</h2>
+  <ng-template #defaultLabel>
+    <h2 data-testid="timeline-label">Timeline</h2>
+  </ng-template>
+  <ul *ngIf="events?.length; else emptyTimeline" class="timeline-list" data-testid="timeline-list">
+    <li *ngFor="let event of events" class="timeline-event" data-testid="timeline-event">
+      <div class="timeline-dot" aria-hidden="true"></div>
+      <div class="timeline-content">
+        <time [attr.datetime]="event.time" class="timeline-time" data-testid="timeline-time">{{ event.time }}</time>
+        <div class="timeline-description" data-testid="timeline-description">{{ event.description }}</div>
+        <div *ngIf="event.involvedCharacters?.length" class="timeline-characters" data-testid="timeline-characters">
+          <strong>Involved:</strong> {{ event.involvedCharacters.join(', ') }}
+        </div>
+      </div>
+    </li>
+  </ul>
+  <ng-template #emptyTimeline>
+    <div class="timeline-empty" data-testid="timeline-empty"><em>Timeline is empty.</em></div>
+  </ng-template>
+</section>

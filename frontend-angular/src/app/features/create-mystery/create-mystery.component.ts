@@ -18,14 +18,14 @@ export class CreateMysteryComponent {
 
   generateMystery(): void {
     const input: MysteryInput = {
-      theme: 'Buried Secrets',
+      playerName: 'Chartaker',
+      mysteryType: 'Buried Secrets',
+      mood: 'eerie',
       setting: {
         name: 'Churchyard in Georgia',
         description: 'A quiet churchyard with a history of buried secrets. The church is old, with a graveyard that has seen many generations. The atmosphere is eerie, especially at night.',
         locationType: 'Churchyard'
-      },
-      characters: ['Chartaker', 'Priest', 'Choir Member'],
-      difficulty: 'Intermediate'
+      }
     };
 
     this.mysteryService.generateMystery(input).subscribe({

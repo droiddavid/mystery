@@ -20,4 +20,16 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit toggleLeftSidebar when toggleLeft is called', () => {
+    const spy = jest.spyOn(component.toggleLeftSidebar, 'emit');
+    component.toggleLeft();
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should emit toggleRightSidebar when toggleRight is called', () => {
+    const spy = jest.spyOn(component.toggleRightSidebar, 'emit');
+    component.toggleRight();
+    expect(spy).toHaveBeenCalled();
+  });
 });

@@ -1,0 +1,11 @@
+
+:host {
+  display: block;
+  font-family: var(--font-body);
+}
+
+h2, h3 {
+  font-family: var(--font-ui);
+  border-bottom: 1px solid var(--color-accent);
+  font-size: 1.2em;
+}

@@ -1,0 +1,13 @@
+
+
+.character-card {
+  padding: 1rem;
+  background: var(--color-surface);
+  border: 1px dashed var(--color-accent);
+  margin-bottom: 1rem;
+  transition: background 0.2s;
+}
+.character-card.suspect {
+  background: #330000;
+  border-color: red;
+}

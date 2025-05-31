@@ -1,0 +1,37 @@
+<section class="character-list" aria-label="Characters">
+  <ng-container *ngIf="characters?.length; else noCharacters">
+    <ul>
+      <li *ngFor="let c of characters" [class.suspect]="c.role.toLowerCase() === 'suspect'">
+        <article class="character-card">
+          <header>
+            <strong>{{ c.name }}</strong>
+            <span class="role">({{ c.role }})</span>
+          </header>
+          <div *ngIf="c.personality"><strong>Personality:</strong> {{ c.personality }}</div>
+          <div *ngIf="c.motive"><strong>Motive:</strong> {{ c.motive }}</div>
+          <div *ngIf="c.alibi">
+            <strong>Alibi:</strong>
+            <span>{{ c.alibi.location }}</span>,
+            <span>{{ c.alibi.time }}</span>
+            <span *ngIf="c.alibi.verifiedBy">(Verified by: {{ c.alibi.verifiedBy }})</span>
+          </div>
+          <div *ngIf="c.secrets?.length">
+            <strong>Secrets:</strong>
+            <ul>
+              <li *ngFor="let secret of c.secrets">{{ secret }}</li>
+            </ul>
+          </div>
+          <div *ngIf="c.connections?.length">
+            <strong>Connections:</strong>
+            <ul>
+              <li *ngFor="let conn of c.connections">{{ conn }}</li>
+            </ul>
+          </div>
+        </article>
+      </li>
+    </ul>
+  </ng-container>
+  <ng-template #noCharacters>
+    <div class="no-characters" aria-live="polite"><em>No characters found.</em></div>
+  </ng-template>
+</section>

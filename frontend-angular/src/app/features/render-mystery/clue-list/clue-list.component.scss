@@ -1,0 +1,18 @@
+
+
+.clue-list {
+  list-style: none;
+  padding: 0;
+}
+
+.clue-card {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: var(--color-surface);
+  border-left: 4px solid var(--color-highlight);
+  font-family: var(--font-body);
+  transition: background 0.2s;
+}
+.clue-card:hover {
+  background: #232323;
+}
