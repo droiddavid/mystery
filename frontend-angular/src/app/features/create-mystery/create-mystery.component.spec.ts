@@ -4,7 +4,7 @@ import { CreateMysteryComponent } from './create-mystery.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { MysteryService } from '../../services/mystery.service';
 import { of, throwError } from 'rxjs';
-import { Mystery } from '../../models/mystery.model';
+import { Mystery } from '../../models/mystery/mystery.model';
 import { provideHttpClient } from '@angular/common/http';
 
 

@@ -6,8 +6,8 @@ import {
 } from '@angular/common/http/testing';
 
 import { MysteryService } from './mystery.service';
-import { Mystery } from '../models/mystery.model';
-import { MysteryInput } from '../models/mysteryInput.model';
+import { Mystery } from '../models/mystery/mystery.model';
+import { MysteryInput } from '../models/mystery/mysteryInput.model';
 
 describe('MysteryService', () => {
   let service: MysteryService;

@@ -1,4 +1,4 @@
-import { Setting } from "./setting.model";
+import { Setting } from "../setting.model";
 
 // mystery-input.model.ts
 export interface MysteryInput {

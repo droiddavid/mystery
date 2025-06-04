@@ -1,9 +1,9 @@
-import { Character } from "./character.model";
-import { Clue } from "./clue.model";
-import { Setting } from "./setting.model";
-import { Solution } from "./solution.model";
+import { Character } from "../character.model";
+import { Clue } from "../clue.model";
+import { Setting } from "../setting.model";
+import { Solution } from "../solution.model";
 import { MysteryLocation } from "./mystery-location.model";
-import { TimelineEvent } from "./timeline-event.model";
+import { TimelineEvent } from "../timeline-event.model";
 
 // src/app/models/mystery.model.ts
 export interface Mystery {

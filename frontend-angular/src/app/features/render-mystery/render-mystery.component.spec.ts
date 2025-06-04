@@ -1,7 +1,7 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RenderMysteryComponent } from './render-mystery.component';
-import { Mystery } from '../../models/mystery.model';
+import { Mystery } from '../../models/mystery/mystery.model';
 import { By } from '@angular/platform-browser';
 
 describe('RenderMysteryComponent', () => {

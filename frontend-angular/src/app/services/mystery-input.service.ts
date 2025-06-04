@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MysteryInput } from '../models/mysteryInput.model';
+import { MysteryInput } from '../models/mystery/mysteryInput.model';
 import { Setting } from '../models/setting.model';
 
 @Injectable({

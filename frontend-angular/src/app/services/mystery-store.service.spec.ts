@@ -1,5 +1,5 @@
 import { MysteryStoreService } from './mystery-store.service';
-import { Mystery } from '../models/mystery.model';
+import { Mystery } from '../models/mystery/mystery.model';
 
 describe('MysteryStoreService', () => {
   let service: MysteryStoreService;

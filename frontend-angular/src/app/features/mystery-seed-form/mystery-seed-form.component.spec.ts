@@ -6,7 +6,7 @@ import { provideHttpClient } from '@angular/common/http';
 // import { HttpClient } from '@angular/common/http';
 import { MysteryInputBuilderService } from '../../services/mystery-input.service';
 import { MysteryService } from '../../services/mystery.service';
-import { MysteryInput } from '../../models/mysteryInput.model';
+import { MysteryInput } from '../../models/mystery/mysteryInput.model';
 
 describe('MysterySeedFormComponent', () => {
   let component: MysterySeedFormComponent;
