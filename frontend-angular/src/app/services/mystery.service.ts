@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Mystery } from '../models/mystery.model';
+import { Mystery } from '../models/mystery/mystery.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { MysteryInput } from '../models/mysteryInput.model';
+import { MysteryInput } from '../models/mystery/mysteryInput.model';
 
 @Injectable({
   providedIn: 'root'

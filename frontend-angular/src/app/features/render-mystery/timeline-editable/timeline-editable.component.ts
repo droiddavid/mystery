@@ -1,4 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { GameStateService } from '../../../services/game-state.service';
+import { GameState } from '../../../models/game-state.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -21,6 +23,7 @@ export interface EditableTimelineEvent {
   styleUrls: ['./timeline-editable.component.scss']
 })
 export class TimelineEditableComponent {
+  constructor(private gameStateService: GameStateService) {}
   @Input() editableEvents: EditableTimelineEvent[] = [];
   @Input() readonlyMode = false;
   @Output() updated = new EventEmitter<EditableTimelineEvent[]>();
@@ -62,5 +65,9 @@ export class TimelineEditableComponent {
 
   emitUpdate() {
     this.updated.emit(this.editableEvents);
+    // --- MYS-61: Save game after timeline update ---
+    // TODO: Replace with actual updated GameState from your app state
+    const updatedGameState: GameState = {} as any;
+    this.gameStateService.saveGame(updatedGameState);
   }
 }

@@ -1,7 +1,7 @@
 import { EditableTimelineEvent } from './timeline-editable/timeline-editable.component';
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Mystery } from '../../models/mystery.model';
+import { Mystery } from '../../models/mystery/mystery.model';
 import { ClueListComponent } from './clue-list/clue-list.component';
 import { CharacterListComponent } from './character-list/character-list.component';
 import TimelineComponent from './timeline/timeline.component';

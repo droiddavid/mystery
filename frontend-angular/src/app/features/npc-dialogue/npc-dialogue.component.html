@@ -1,0 +1,16 @@
+<div class="dialogue-container" role="dialog">
+  <div class="dialogue-header">
+    <span class="npc-name">{{ npcName }}</span>
+    <button class="close-btn" type="button" (click)="close()">&times;</button>
+  </div>
+  <div class="chat-window" #chatWindow tabindex="0" aria-live="polite">
+    <div *ngFor="let msg of chat" [ngClass]="msg.sender === 'player' ? 'player-msg' : 'npc-msg'">
+      <span class="msg-text">{{ msg.text }}</span>
+    </div>
+    <div *ngIf="typing" class="npc-msg typing-indicator" aria-live="polite">…</div>
+  </div>
+  <div class="chat-input">
+    <input type="text" [(ngModel)]="userInput" (keydown)="onInputKeydown($event)" placeholder="Type your message..." aria-label="Type your message" />
+    <button type="button" (click)="sendMessage()" [disabled]="!userInput.trim()">Send</button>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 import { FooterComponent } from '../footer/footer.component';
 import { RightSidebarComponent } from '../right-sidebar/right-sidebar.component';
 import { Component } from '@angular/core';
-import { Mystery } from '../../models/mystery.model';
+import { Mystery } from '../../models/mystery/mystery.model';
 import { MysteryService } from '../../services/mystery.service';
 import { HttpClient } from '@angular/common/http';
 import { RouterOutlet } from '@angular/router';

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Mystery } from '../../models/mystery.model';
+import { Mystery } from '../../models/mystery/mystery.model';
 
 @Component({
   selector: 'app-mystery-result',

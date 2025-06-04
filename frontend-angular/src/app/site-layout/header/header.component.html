@@ -13,6 +13,8 @@
     <a href="#">Play</a>
     <a href="#">Create</a>
     <a href="#">Profile</a>
+    <button (click)="onSaveGame()" aria-label="Save Game">💾 Save Game</button>
+    <span *ngIf="saveMessage" class="save-toast">{{ saveMessage }}</span>
     <button
       (click)="toggleRight()"
       (keydown.enter)="toggleRight()"

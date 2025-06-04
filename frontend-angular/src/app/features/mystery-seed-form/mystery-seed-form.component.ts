@@ -3,7 +3,7 @@ import { NgForm, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MysteryInputBuilderService } from '../../services/mystery-input.service';
 import { MysteryService } from '../../services/mystery.service';
-import { Mystery } from '../../models/mystery.model';
+import { Mystery } from '../../models/mystery/mystery.model';
 import { SettingGalleryComponent } from '../setting-gallery/setting-gallery.component';
 import { Setting } from '../../models/setting.model';
 
