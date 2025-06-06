@@ -19,6 +19,7 @@ public class OllamaService {
 
     private static final Logger log = LoggerFactory.getLogger(OllamaService.class);
     
+    @SuppressWarnings({ "null", "rawtypes" })
     public Mystery generateMysteryFromLLM(MysteryInput input) {
         String prompt = buildPrompt(input);
 

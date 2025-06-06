@@ -7,7 +7,6 @@ import com.mysterygame.service.OllamaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.logging.*;
 import org.springframework.web.bind.annotation.*;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/mystery")
