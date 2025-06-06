@@ -1,21 +1,15 @@
-import { FooterComponent } from '../footer/footer.component';
-import { RightSidebarComponent } from '../right-sidebar/right-sidebar.component';
 import { Component } from '@angular/core';
 import { Mystery } from '../../models/mystery/mystery.model';
 import { MysteryService } from '../../services/mystery.service';
 import { HttpClient } from '@angular/common/http';
-import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from '../header/header.component';
-import { LeftSidebarComponent } from '../left-sidebar/left-sidebar.component';
-
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, HeaderComponent, RouterOutlet, LeftSidebarComponent, RightSidebarComponent, FooterComponent],
+  imports: [CommonModule, FormsModule],
   templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.scss'
+  styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent {
 

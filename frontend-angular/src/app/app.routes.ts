@@ -4,7 +4,8 @@ export const routes: Routes = [
      {
           path: '',
           loadComponent: () => import('./site-layout/home-page/home-page.component').then(m => m.HomePageComponent)
-     },
+     }
+     ,
      {
           path: 'seed',
           loadComponent: () => import('./features/mystery-seed-form/mystery-seed-form.component').then(m => m.MysterySeedFormComponent)
@@ -16,6 +17,6 @@ export const routes: Routes = [
      {
           path: 'mystery-viewer',
           loadComponent: () => import('./features/render-mystery/render-mystery.component').then(m => m.RenderMysteryComponent)
-     },
-     { path: '**', redirectTo: 'seed' }
+     }
+
 ];

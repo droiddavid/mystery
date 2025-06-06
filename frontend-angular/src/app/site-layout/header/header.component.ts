@@ -2,10 +2,11 @@
 import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { GameStateService } from '../../services/game-state.service';
 import { GameStateStoreService } from '../../services/game-state-store.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
