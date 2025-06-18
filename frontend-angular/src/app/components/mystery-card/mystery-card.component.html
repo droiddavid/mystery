@@ -1,0 +1,75 @@
+<!-- <div class="mystery-card relative overflow-hidden rounded-xl border bg-gradient-to-br {{ getThemeClasses() }} transition-all duration-300 hover:scale-[1.02] hover:shadow-lg group">
+  <div class="absolute inset-0">
+    <img
+      [src]="imageUrl"
+      [alt]="title"
+      class="w-full h-full object-cover opacity-40 transition-opacity duration-300 group-hover:opacity-50"
+    />
+  </div>
+  <div class="absolute inset-0 bg-black/60"></div>
+  <div class="relative p-6 h-full flex flex-col">
+    <div class="mb-2">
+      <span class="inline-block px-3 py-1 text-xs font-medium rounded-md bg-black/70 text-gray-200 border border-gray-700">
+        {{ theme }}
+      </span>
+    </div>
+    <h3 class="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-200">
+      {{ title }}
+    </h3>
+    <p class="text-gray-300 text-sm flex-grow mb-4">{{ description }}</p>
+    <div class="flex flex-wrap gap-3 text-xs text-gray-300 mb-4 bg-black/30 p-3 rounded-lg border border-gray-800">
+      <div class="flex items-center">
+        <svg class="h-4 w-4 mr-1 text-amber-500" fill="currentColor">
+          <use href="#clock-icon"></use>
+        </svg>
+        {{ duration }}
+      </div>
+      <div class="flex items-center">
+        <svg class="h-4 w-4 mr-1 text-amber-500" fill="currentColor">
+          <use href="#users-icon"></use>
+        </svg>
+        {{ players }}
+      </div>
+      <div class="flex items-center">
+        <span class="mr-1">Difficulty:</span>
+        <div class="flex">
+          <ng-container *ngFor="let star of starsArray; let i = index">
+            <svg
+              class="h-4 w-4"
+              [ngClass]="{ 'text-amber-500': i < difficulty, 'text-gray-600': i >= difficulty }"
+              [attr.fill]="i < difficulty ? 'currentColor' : 'none'"
+            >
+              <use href="#star-icon"></use>
+            </svg>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <button class="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white py-2 px-4 rounded-md transition-all duration-200 shadow-lg shadow-amber-900/50 hover:shadow-amber-600/50">
+      INITIATE MISSION
+    </button>
+  </div>
+</div> -->
+
+
+
+
+
+
+<ng-container *ngIf="mystery">
+  <div class="feature-card purple mystery-card-visual">
+    <div class="mystery-card-bg-image" [ngStyle]="{'background-image': 'url(' + mystery.imageUrl + ')'}"></div>
+    <div class="mystery-card-bg-fade"></div>
+    <h3>{{ mystery.title }}</h3>
+    <p>{{ mystery.description }}</p>
+    <div class="feature-footer purple">
+      <span class="material-symbols-outlined">psychology</span>
+      <span>{{ mystery.theme }}</span>
+    </div>
+    <div class="mystery-card-details">
+      <span title="Expected Duration">🕒 {{ mystery.duration }}</span>
+      <span title="Players">👥 {{ mystery.players }}</span>
+      <span title="Difficulty" class="difficulty-label">{{ difficultyLabel }}</span>
+    </div>
+  </div>
+</ng-container>

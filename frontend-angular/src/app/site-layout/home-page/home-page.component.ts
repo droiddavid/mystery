@@ -1,114 +1,60 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Mystery } from '../../models/mystery/mystery.model';
 import { MysteryService } from '../../services/mystery.service';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { mysteries as tempMysteries } from '../../data/temp-mysteries';
+import { MysteryCardComponent } from '../../components/mystery-card/mystery-card.component';
+
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MysteryCardComponent],
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
 })
-export class HomePageComponent {
-
-  title = 'solve-the-mystery';
-  baseUrl: any;
-
+export class HomePageComponent implements OnInit, OnDestroy {
+  mysteries = tempMysteries;
   botPromptText = '';
-
   showLeftSidebar = true;
   showRightSidebar = true;
+  currentSlideIndex = 0;
 
+  slideImages = [
+    { src: 'assets/carousel/blackDetectiveMansion.png', caption: 'Black Detective Mansion' },
+    { src: 'assets/carousel/cyberpunkInvestigation.png', caption: 'Cyberpunk Investigation' },
+    { src: 'assets/carousel/egyptianDetectiveInVillage.png', caption: 'Egyptian Detective in Village' },
+    { src: 'assets/carousel/futuristicHangarBay.png', caption: 'Futuristic Hangar Bay' },
+    { src: 'assets/carousel/missingDog.png', caption: 'Missing Dog' }
+  ];
 
-  constructor(private mysteryService: MysteryService, private http: HttpClient) {
-    
+  autoRotateInterval: any;
+  autoRotateDelay = 5000; // 5 seconds
+
+  constructor(private mysteryService: MysteryService, private http: HttpClient) {}
+
+  ngOnInit(): void {
   }
 
-  onToggleLeftSidebar() {
-  this.showLeftSidebar = !this.showLeftSidebar;
+  ngOnDestroy(): void {
   }
 
-  onToggleRightSidebar() {
-  this.showRightSidebar = !this.showRightSidebar;
+
+
+
+
+  prevSlide(): void {
+    this.currentSlideIndex = (this.currentSlideIndex - 1 + this.totalSlides) % this.totalSlides;
   }
 
-  createMystery(): void {
-
-    const mystery: Mystery = {
-      title: 'The Shadow in the Pew',
-      summary: 'A priceless artifact has gone missing...',
-      setting: {
-        name: 'Quiet town church',
-        description: 'A peaceful rural church that’s become the scene of mystery.',
-        locationType: 'Indoor'
-      },
-      difficulty: 'Beginner',
-      solution: {
-        suspect: 'Altar Boy',
-        method: 'Theft',
-        motive: 'Impress peers',
-        reveal: 'The altar boy confesses after being shown security footage.',
-        discoveredBy: 'Reverend Amos'
-      },
-      characters: [
-        {
-          name: 'Reverend Amos',
-          role: 'witness',
-          personality: 'solemn and careful',
-          knowledge: 'Saw someone late at night',
-          secrets: [],
-          connections: ['Altar Boy'],
-          motive: 'None',
-          alibi: {
-            location: 'His quarters',
-            verifiedBy: 'None',
-            time: 'Was in his quarters at the time'
-          }
-        }
-      ],
-      clues: [
-        {
-          id: 'c1',
-          description: 'Shattered glass behind the altar',
-          foundAt: 'Sanctuary',
-          discoveredBy: 'Reverend Amos',
-          relevance: 'Proof of forced entry',
-          location: 'Sanctuary',
-          reveals: 'Someone broke in',
-        }
-      ],
-      timeline: [
-        {
-          time: '10 PM',
-          description: 'Reverend hears a noise in the sanctuary',
-          involvedCharacters: ['Reverend Amos']
-        }
-      ],
-      locations: [
-        {
-          locationName: 'Sanctuary',
-          type: 'Indoor',
-          LocationDetails: {
-            ambience: 'quiet',
-            lighting: 'dim'
-          },
-          description: 'Main area of the church with pews and altar',
-          relevantClues: ['c1']
-        }
-      ]
-    };
-    
-  
-    this.mysteryService.createMystery(mystery).subscribe({
-      next: (res: any) => console.log('Mystery submitted:', res),
-      error: (err: any) => console.error('Error:', err)
-    });
+  nextSlide(): void {
+    this.currentSlideIndex = (this.currentSlideIndex + 1) % this.totalSlides;
   }
 
-  onUserSubmit() {
-    // Just triggers refresh of bot-prompt
-    console.log('User submitted:', this.botPromptText);
+  get totalSlides(): number {
+    return this.slideImages.length;
   }
+
+
 }

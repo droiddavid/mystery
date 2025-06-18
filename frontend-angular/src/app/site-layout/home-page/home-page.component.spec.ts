@@ -1,3 +1,4 @@
+import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HomePageComponent } from './home-page.component';
 
@@ -22,102 +23,63 @@ describe('HomePageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should toggle showLeftSidebar when onToggleLeftSidebar is called', () => {
-    const initial = component.showLeftSidebar;
-    component.onToggleLeftSidebar();
-    expect(component.showLeftSidebar).toBe(!initial);
+  it('should return the correct totalSlides', () => {
+    expect(component.totalSlides).toBe(component.slideImages.length);
   });
 
-  it('should toggle showRightSidebar when onToggleRightSidebar is called', () => {
-    const initial = component.showRightSidebar;
-    component.onToggleRightSidebar();
-    expect(component.showRightSidebar).toBe(!initial);
+  it('should go to the previous slide correctly', () => {
+    component.currentSlideIndex = 0;
+    component.prevSlide();
+    expect(component.currentSlideIndex).toBe(component.slideImages.length - 1);
+    component.prevSlide();
+    expect(component.currentSlideIndex).toBe(component.slideImages.length - 2);
   });
 
-  it('should call mysteryService.createMystery and log on success', () => {
-    const mockMystery = { title: 'Test', summary: '', setting: {}, difficulty: '', solution: {}, characters: [], clues: [], timeline: [], locations: [] };
-    const mockResponse = { success: true };
-    // Patch the private property using bracket notation
-    (component as any).mysteryService = { createMystery: jest.fn().mockReturnValue({ subscribe: (handlers: any) => handlers.next(mockResponse) }) };
-    console.log = jest.fn();
-    component.createMystery = HomePageComponent.prototype.createMystery;
-    component.createMystery();
-    expect((component as any).mysteryService.createMystery).toHaveBeenCalled();
-    expect(console.log).toHaveBeenCalledWith('Mystery submitted:', mockResponse);
+  it('should go to the next slide correctly', () => {
+    component.currentSlideIndex = component.slideImages.length - 1;
+    component.nextSlide();
+    expect(component.currentSlideIndex).toBe(0);
+    component.nextSlide();
+    expect(component.currentSlideIndex).toBe(1);
+  });
+  // MYS-117/MYS-121 Acceptance Test
+  it('should meet MYS-117/MYS-121: be standalone, mounted at root, and render welcome modules', async () => {
+    const { provideHttpClient } = await import('@angular/common/http');
+    await TestBed.resetTestingModule().configureTestingModule({
+      imports: [HomePageComponent, RouterTestingModule],
+      providers: [provideHttpClient()]
+    }).compileComponents();
+    const fixture = TestBed.createComponent(HomePageComponent);
+    fixture.detectChanges();
+    // Standalone check
+    expect((HomePageComponent as any).ɵcmp.standalone).toBe(true);
+    // Rendered content checks
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('.carousel')).toBeTruthy();
+    expect(compiled.querySelector('.features-grid')).toBeTruthy();
+    expect(compiled.querySelector('.cta-section')).toBeTruthy();
   });
 
-  it('should log user input on submission', () => {
-    component.botPromptText = 'Test input';
-    console.log = jest.fn();
-    component.onUserSubmit();
-    expect(console.log).toHaveBeenCalledWith('User submitted:', 'Test input');
+  // MYS-117/MYS-122 Acceptance Test
+  it('should meet MYS-117/MYS-122: mount and display Mystery Generator on first load', async () => {
+    const { provideHttpClient } = await import('@angular/common/http');
+    await TestBed.resetTestingModule().configureTestingModule({
+      imports: [HomePageComponent, RouterTestingModule],
+      providers: [provideHttpClient()]
+    }).compileComponents();
+    const fixture = TestBed.createComponent(HomePageComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    // Check for the generator section (upload-section, create button, or similar)
+    expect(compiled.querySelector('.upload-section')).toBeTruthy();
+    // Check for a button or element that triggers mystery creation
+    // Accept either 'add_circle' or 'search' as valid icons for the generator
+    const iconText = compiled.querySelectorAll('.upload-stat-header span.material-symbols-outlined');
+    const iconTexts = Array.from(iconText).map(el => el.textContent?.toLowerCase() || '');
+    expect(iconTexts.some(txt => txt.includes('add_circle') || txt.includes('search'))).toBe(true);
+    expect(compiled.textContent?.toLowerCase()).toContain('create a mystery');
   });
-
-
-
-
-
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should toggle showLeftSidebar when onToggleLeftSidebar is called', () => {
-    const initial = component.showLeftSidebar;
-    component.onToggleLeftSidebar();
-    expect(component.showLeftSidebar).toBe(!initial);
-  });
-
-  it('should toggle showRightSidebar when onToggleRightSidebar is called', () => {
-    const initial = component.showRightSidebar;
-    component.onToggleRightSidebar();
-    expect(component.showRightSidebar).toBe(!initial);
-  });
-
-  it('should call mysteryService.createMystery and log on success', () => {
-    const mockMystery = { title: 'Test', summary: '', setting: {}, difficulty: '', solution: {}, characters: [], clues: [], timeline: [], locations: [] };
-    const mockResponse = { success: true };
-    // Patch the private property using bracket notation
-    (component as any).mysteryService = { createMystery: jest.fn().mockReturnValue({ subscribe: (handlers: any) => handlers.next(mockResponse) }) };
-    console.log = jest.fn();
-    component.createMystery = HomePageComponent.prototype.createMystery;
-    component.createMystery();
-    expect((component as any).mysteryService.createMystery).toHaveBeenCalled();
-    expect(console.log).toHaveBeenCalledWith('Mystery submitted:', mockResponse);
-  });
-
-  it('should call mysteryService.createMystery and log error on failure', () => {
-    const mockMystery = { title: 'Test', summary: '', setting: {}, difficulty: '', solution: {}, characters: [], clues: [], timeline: [], locations: [] };
-    const mockError = new Error('fail');
-    (component as any).mysteryService = { createMystery: jest.fn().mockReturnValue({ subscribe: (handlers: any) => handlers.error(mockError) }) };
-    console.error = jest.fn();
-    component.createMystery = HomePageComponent.prototype.createMystery;
-    component.createMystery();
-    expect((component as any).mysteryService.createMystery).toHaveBeenCalled();
-    expect(console.error).toHaveBeenCalledWith('Error:', mockError);
-  });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 });
+

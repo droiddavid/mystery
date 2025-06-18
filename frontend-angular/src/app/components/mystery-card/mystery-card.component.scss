@@ -1,0 +1,299 @@
+/* Ensure no background color from global feature-card or purple classes overrides the image */
+.feature-card,
+.feature-card.purple {
+  background: transparent !important;
+}
+.mystery-card-visual {
+  position: relative;
+  overflow: hidden;
+}
+
+.mystery-card-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.mystery-card-bg-fade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(20, 20, 30, 0.65);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.mystery-card-visual > *:not(.mystery-card-bg-fade) {
+  position: relative;
+  z-index: 2;
+}
+.mystery-card-visual {
+  /* Remove background-color to allow background image to show */
+  background-color: transparent;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  max-width: 320px;
+  margin: 0 auto;
+  height: 100%;
+  min-height: 320px;
+}
+
+.mystery-card-visual:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+.mystery-card-visual .feature-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  background: linear-gradient(to bottom right, #8b5cf6, #7c3aed);
+}
+
+/* Remove purple background for .feature-card.purple to allow image background */
+.feature-card.purple {
+  background: none !important;
+}
+
+
+.mystery-card-visual .feature-icon .material-symbols-outlined {
+  color: white;
+}
+
+.mystery-card-visual h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  margin-top: 0;
+}
+
+.mystery-card-visual p {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+.mystery-card-visual .feature-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #8b5cf6;
+  margin-bottom: 12px;
+}
+
+.mystery-card-details {
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+  color: #7c3aed;
+  margin-top: 8px;
+  margin-bottom: 0;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.difficulty-label {
+  background: #ede9fe;
+  color: #7c3aed;
+  border-radius: 8px;
+  padding: 2px 10px;
+  font-weight: 600;
+  font-size: 12px;
+}
+.mystery-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 320px;
+  min-width: 0;
+  box-sizing: border-box;
+  height: 100%;
+  perspective: 1200px;
+  position: relative;
+  min-height: 340px;
+  max-height: 370px;
+  border: 2.5px solid #ffe082;
+  box-shadow: 0 0 0 3px #fffde7, 0 8px 32px rgba(0,0,0,0.5);
+  border-radius: 18px;
+  overflow: hidden;
+  margin: 0 auto;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.mystery-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.mystery-card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.6s cubic-bezier(.4,2,.6,1);
+  transform-style: preserve-3d;
+}
+
+.mystery-card.flipped .mystery-card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-front {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+
+.card-back {
+  z-index: 1;
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-back-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 18px;
+}
+
+.card-face.card-front .card-content {
+  position: relative;
+  z-index: 2;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  height: 100%;
+  padding: 1.5rem;
+  color: #f6e9d3;
+  background: rgba(24, 24, 24, 0.82);
+  box-sizing: border-box;
+}
+.mystery-title {
+  min-height: 3rem;
+  max-height: 3.2rem;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+.card-title {
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+}
+
+.card-bottom {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mystery-desc {
+  flex: 1 1 auto;
+  flex-grow: 1;
+  flex-basis: auto;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  min-height: 3.5em;
+  max-height: 4.5em;
+}
+
+
+.card-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.card-details {
+  font-size: 1.1em;
+  align-items: center;
+}
+
+.card-details-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 18px 0 16px 0;
+}
+
+.difficulty {
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 0.92em;
+  background: #444;
+  color: #fff;
+}
+
+.difficulty.beginner { background: #4caf50; }
+.difficulty.intermediate { background: #ff9800; }
+.difficulty.advanced { background: #f44336; }
+
+.start-btn {
+  width: 100%;
+  padding: 12px 0;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #ffb347 60%, #ffcc80 100%);
+  color: #222;
+  font-size: 1.15em;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.start-btn:hover {
+  background: linear-gradient(90deg, #ff9800 60%, #ffd580 100%);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.hidden {
+  display: none;
+}

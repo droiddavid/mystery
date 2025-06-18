@@ -1,16 +1,226 @@
 
 :root {
-  --color-bg: #1a1a1a;
-  --color-surface: #2b2b2b;
-  --color-text: #e0e0e0;
-  --color-accent: #00ffff;
-  --color-highlight: #ffd700;
-  --font-body: 'Georgia', serif;
-  --font-ui: 'Roboto Mono', monospace;
-  --grid-gap: 1rem;
-  --radius: 8px;
-  --glow: 0 0 6px var(--color-accent);
+  /* Mystery Game Theme Colors */
+  --primary-color: #3a2c1a; /* Deep brown, old paper */
+  --primary-color-light: #bfa76f; /* Antique gold */
+  --secondary-color: #7c5e3c; /* Leather brown */
+
+  /* Success / Status colors */
+  --success-color: #6bbf59; /* Muted green */
+  --info-color: #4b6eaf; /* Dusty blue */
+  --warning-color: #e0b252; /* Brass yellow */
+  --danger-color: #a94442; /* Dried blood red */
+
+  /* Feature section gradients (mystery theme) */
+  --feature-blue-from: #3a415a; /* Faded navy */
+  --feature-blue-to: #23263a; /* Deep shadow */
+  --feature-green-from: #6b7a53; /* Olive green */
+  --feature-green-to: #3a2c1a; /* Deep brown */
+  --feature-purple-from: #6e4a7e; /* Dusty purple */
+  --feature-purple-to: #2d1e2f; /* Shadow purple */
+
+  /* Background colors (mystery) */
+  --body-bg: #18140c; /* Aged parchment */
+  --card-bg: #23201a; /* Old book */
+  --card-border-color: #bfa76f; /* Antique gold */
+  --gray-light: #bfa76f; /* Faded gold */
+  --gray-medium: #7c5e3c; /* Leather brown */
+  --gray-dark: #3a2c1a; /* Deep brown */
+
+  /* Text colors */
+  --color-text: #f5e9c8; /* Parchment */
+  --color-text-secondary: #bfa76f; /* Antique gold */
+  --color-surface: #23201a; /* Old book */
+  --color-bg: #18140c; /* Aged parchment */
+  --radius: 14px;
+  --glow: 0 2px 16px 0 #bfa76f99;
+  --grid-gap: 2rem;
+  --font-body: 'Spectral', 'Georgia', 'Times New Roman', serif;
 }
+
+
+html, body {
+  background: var(--color-bg) !important;
+  color: var(--color-text) !important;
+  font-family: var(--font-body);
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  background-image: url('/assets/crimeSceneCollage.png') !important;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center center;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+
+
+
+/* Universal dark backgrounds for containers */
+.main-section, .content-wrapper, .page-container, .main-grid, .upload-section, .ai-panel, .features-grid, .carousel, .upload-stats-grid, .cta-section, .mystery-grid {
+  background: var(--color-bg) !important;
+  color: var(--color-text) !important;
+}
+
+/* Headings and text */
+h1, h2, h3, h4, h5, h6 {
+  color: #fff !important;
+}
+
+p, span, label, .system-text, .header-subtitle, .upload-title {
+  color: var(--color-text-secondary) !important;
+}
+
+/* Inputs and buttons */
+input, textarea, select {
+  background: #23263a !important;
+  color: #f3f4f6 !important;
+  border: 1px solid #2d3147 !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #a1a1aa !important;
+}
+
+button, .cta-button {
+  background: #23263a;
+  color: #f3f4f6;
+  border: 1px solid #2d3147;
+  transition: background 0.2s, color 0.2s;
+}
+button:hover, .cta-button:hover {
+  background: #181a20;
+  color: #fff;
+}
+
+/* Card and panel backgrounds */
+.card, .feature-card, .mystery-card-visual, .ai-panel, .upload-section, .cta-section {
+  background: var(--card-bg) !important;
+  color: var(--color-text) !important;
+  border-color: var(--card-border-color) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+}
+
+/* Borders and dividers */
+hr, .header-line, .title-underline {
+  border-color: #2d3147 !important;
+  background: #2d3147 !important;
+}
+
+/* Scrollbar styling for dark mode */
+::-webkit-scrollbar {
+  width: 10px;
+  background: #23263a;
+}
+::-webkit-scrollbar-thumb {
+  background: #181a20;
+  border-radius: 8px;
+}
+
+.card, .feature-card, .mystery-card-visual {
+  background: var(--card-bg) !important;
+  color: var(--color-text);
+  border-color: var(--card-border-color) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+}
+
+.feature-card .feature-icon, .mystery-card-visual .feature-icon {
+  background: linear-gradient(to bottom right, var(--feature-purple-from), var(--feature-purple-to));
+}
+
+.feature-card.blue .feature-icon {
+  background: linear-gradient(to bottom right, var(--feature-blue-from), var(--feature-blue-to));
+}
+.feature-card.green .feature-icon {
+  background: linear-gradient(to bottom right, var(--feature-green-from), var(--feature-green-to));
+}
+.feature-card.purple .feature-icon {
+  background: linear-gradient(to bottom right, var(--feature-purple-from), var(--feature-purple-to));
+}
+
+.feature-footer.blue {
+  color: var(--feature-blue-from);
+}
+.feature-footer.green {
+  color: var(--feature-green-from);
+}
+.feature-footer.purple {
+  color: var(--feature-purple-from);
+}
+
+.features-grid {
+  background: transparent;
+}
+
+.upload-section, .ai-panel, .cta-section {
+  background: var(--card-bg);
+  color: var(--color-text);
+  border-radius: var(--radius);
+}
+
+.ai-metric {
+  background: #23263a;
+  color: var(--color-text);
+}
+
+.ai-metric:hover {
+  background: #181a20;
+}
+
+.metric-bar {
+  background: #23263a;
+}
+
+.metric-bar-fill.green {
+  background-color: #14b8a6;
+}
+.metric-bar-fill.blue {
+  background-color: #2563eb;
+}
+.metric-bar-fill.purple {
+  background-color: #a78bfa;
+}
+
+.metric-value.green {
+  color: #14b8a6;
+}
+.metric-value.blue {
+  color: #2563eb;
+}
+.metric-value.purple {
+  color: #a78bfa;
+}
+
+.cta-section {
+  background: linear-gradient(to right, #23263a, #181a20);
+  color: #f3f4f6;
+}
+
+.cta-button.primary {
+  background-color: #6366f1;
+  color: #fff;
+}
+.cta-button.primary:hover {
+  background-color: #818cf8;
+}
+.cta-button.secondary {
+  border: 2px solid #6366f1;
+  color: #6366f1;
+  background-color: transparent;
+}
+.cta-button.secondary:hover {
+  background-color: #23263a;
+}
+
 
 body {
   background: var(--color-bg);
@@ -56,4 +266,5 @@ app-footer {
   bottom: 0;
   z-index: 100;
 }
+
 
